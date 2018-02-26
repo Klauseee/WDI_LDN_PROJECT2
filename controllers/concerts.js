@@ -18,6 +18,7 @@ function createRoute(req, res, next) {
 
 function showRoute(req, res, next) {
   Concert.findById(req.params.id)
+    .populate('comments.user')
     .then(concert => {
       if(!concert) return res.render('pages/404');
       res.render('concerts/show', { concert });
@@ -43,6 +44,29 @@ function deleteRoute(req, res) {
     .then(() => res.redirect('/concerts'));
 }
 
+function commentsCreateRoute(req, res, next) {
+  req.body.user = req.currentUser;
+  Concert.findById(req.params.id)
+    .then(concert => {
+      concert.comments.push(req.body);
+      return concert.save();
+    })
+    .then(concert => res.redirect(`/concerts/${concert._id}`))
+    .catch(next);
+}
+
+function commentsDeleteRoute(req, res, next) {
+  Concert.findById(req.params.id)
+    .then(concert => {
+      const comment = concert.comments.id(req.params.commentId);
+      comment.remove();
+      return concert.save();
+    })
+    .then(concert => res.redirect(`/concerts/${concert._id}`))
+    .catch(next);
+}
+
+
 module.exports = {
   index: indexRoute,
   new: newRoute,
@@ -50,5 +74,7 @@ module.exports = {
   show: showRoute,
   edit: editRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  commentsCreate: commentsCreateRoute,
+  commentsDelete: commentsDeleteRoute
 };

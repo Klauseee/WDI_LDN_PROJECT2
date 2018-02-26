@@ -9,10 +9,54 @@
     <li><%= concert.performer3 %></li>
   </ul>
   <p><%= concert.description %></p>
-  <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
 
-        <form method="POST" action="/concerts/<%= concert._id %>">
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="button is-danger">Delete</button>
-        </form>
+
+
+  <% if(locals.isAuthenticated) { %>
+          <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
+
+          <form method="POST" action="/concerts/<%= concert._id %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="button is-danger">Delete</button>
+          </form>
+
+          <hr />
+
+          <ul class="comments">
+            <% concert.comments.forEach(comment => { %>
+              <li>
+              <div class="box">
+              <% if(comment.isOwnedBy(locals.currentUser)) { %>
+                <form class="delete" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="delete">x</button>
+                </form>
+                <% } %>
+                <article class="media">
+                  <div class="media-left">
+                    <figure class="image is-64x64">
+                      <img src="http:fillmurray.com/100/100" alt="Image">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <%= comment.content %>
+                      </p>
+                      <% if(comment.user) { %>
+                        <strong><%= comment.user.username %></strong>
+                      <% } %>
+                    </div>
+                  </div>
+                </article>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+
+          <form method="POST" action="/concerts/<%= concert._id %>/comments">
+          <textarea class="textarea" name="content"></textarea>
+          <button class="button is-primary">Submit</button>
+          </form>
+        <% } %>
 </div>

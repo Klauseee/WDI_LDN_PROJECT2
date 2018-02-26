@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 
 const session = require('express-session');
 
+const flash = require('express-flash');
 const userAuth = require('./lib/userAuth');
 
 const mongoose = require('mongoose');
@@ -41,6 +42,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use(flash());
 
 app.use(userAuth);
 
