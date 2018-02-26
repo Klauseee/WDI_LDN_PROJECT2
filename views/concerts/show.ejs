@@ -1,0 +1,18 @@
+
+<div class="container">
+  <img src="<%= concert.image %>" alt="<%= concert.name %>">
+  <h2 class="title"><%= concert.title %></h2>
+  <h3 class="subtitle"><%= concert.date %></h3>
+  <ul>
+    <li><%= concert.performer1 %></li>
+    <li><%= concert.performer2 %></li>
+    <li><%= concert.performer3 %></li>
+  </ul>
+  <p><%= concert.description %></p>
+  <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
+
+        <form method="POST" action="/concerts/<%= concert._id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="button is-danger">Delete</button>
+        </form>
+</div>

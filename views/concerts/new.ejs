@@ -1,0 +1,50 @@
+<div class="container">
+  <%# //sends form via method POST to /cheeses %>
+  <form method="POST" action="/concerts">
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input" name="title" type="text" placeholder="Title" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Image</label>
+      <div class="control">
+        <input class="input" name="image" type="text" placeholder="Image" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Date</label>
+      <div class="control">
+        <input class="input" name="date" type="text" placeholder="Date" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Performer 1</label>
+      <div class="control">
+        <input class="input" name="performer1" type="text" placeholder="Performer 1" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Performer 2</label>
+      <div class="control">
+        <input class="input" name="performer2" type="text" placeholder="Performer 2" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Performer 3</label>
+      <div class="control">
+        <input class="input" name="performer3" type="text" placeholder="Performer 3" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <textarea class="textarea" name="description" placeholder="Description" maxlength="560"></textarea>
+      </div>
+    </div>
+    <div class="control">
+      <button class="button is-primary">Submit</button>
+    </div>
+  </form>
+</div>

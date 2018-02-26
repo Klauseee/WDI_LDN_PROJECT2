@@ -1,0 +1,21 @@
+<main class="container">
+  <div class="columns is-multiline">
+    <% concerts.forEach(concert => { %>
+      <a href="/concerts/<%= concert._id %>"
+        <div class="column is-full">
+          <img src="<%= concert.image %>" alt="<%= concert.name %>">
+          <h2 class="title"><%= concert.title %></h2>
+          <h3 class="subtitle"><%= concert.date %></h3>
+          <ul>
+            <li><%= concert.performer1 %></li>
+            <li><%= concert.performer2 %></li>
+            <li><%= concert.performer3 %></li>
+          </ul>
+          <p><%= concert.description %></p>
+        </div>
+      </a>
+    <% }) %>
+
+  </div>
+
+</main>

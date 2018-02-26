@@ -1,0 +1,52 @@
+<div class="container">
+  <form method="POST" action="/concerts/<%= concert._id %>">
+
+    <input type="hidden" name="_method" value="PUT">
+
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input class="input" name="title" type="text" value="<%= concert.title %>" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Image</label>
+      <div class="control">
+        <input class="input" name="image" type="text" value="<%= concert.image %>" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Date</label>
+      <div class="control">
+        <input class="input" name="date" value="<%= concert.date %>" type="text" required>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Performer 1</label>
+      <div class="control">
+        <input class="input" name="performer1" value="<%= concert.performer1 %>" type="text" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Performer 2</label>
+      <div class="control">
+        <input class="input" name="performer2" value="<%= concert.performer2 %>" type="text" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Performer 3</label>
+      <div class="control">
+        <input class="input" name="performer3" value="<%= concert.performer3 %>" type="text" required minlength="2">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <textarea class="textarea" name="description" maxlength="560"><%= concert.description %></textarea>
+      </div>
+    </div>
+    <div class="control">
+      <button class="button is-primary">Submit</button>
+    </div>
+  </form>
+</div>
