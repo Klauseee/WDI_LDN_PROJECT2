@@ -3,6 +3,10 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
+const session = require('express-session');
+
+const userAuth = require('./lib/userAuth');
+
 const mongoose = require('mongoose');
 
 mongoose.Promise = require('bluebird');
@@ -32,6 +36,19 @@ app.use(methodOverride(req => {
   }
 }));
 
+app.use(session({
+  secret: 'GysHa^72u91sk0P(', // a random key used to encrypt the session cookie
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(userAuth);
+
 app.use(router);
+
+app.use((err, req, res, next) => { // eslint-disable-line
+  if(err.name === 'ValidationError') return res.render('pages/422');
+  res.render('pages/500', { err });
+});
 
 app.listen(PORT, () => console.log(`Running on port ${PORT}`));
