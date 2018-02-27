@@ -37,14 +37,14 @@
                 </form>
               <% } %>
 
-              <% if(locals.currentUser.isAdmin) { %>
+              <% if(locals.currentUser.isAdmin && !comment.isModerated) { %>
                 <form class="moderate" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>/moderate">
                   <input type="hidden" name="_method" value="PATCH">
                   <button class="moderate">moderate</button>
                 </form>
               <% } %>
 
-              <% if(comment.isModerated) { %>
+              <% if(comment.isModerated || locals.currentUser.isAdmin || comment.isOwnedBy(locals.currentUser)) { %>
                 <article class="media">
                   <div class="media-left">
                     <figure class="image is-64x64">
