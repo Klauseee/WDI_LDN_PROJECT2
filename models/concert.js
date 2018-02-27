@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
   content: { type: String},
-  user: { type: mongoose.Schema.ObjectId, ref: 'User'}
+  user: { type: mongoose.Schema.ObjectId, ref: 'User'},
+  isModerated: { type: Boolean, default: false }
 });
 
 commentSchema.methods.isOwnedBy = function(user) {
@@ -10,7 +11,7 @@ commentSchema.methods.isOwnedBy = function(user) {
 };
 
 const schema = new mongoose.Schema({
-  user: { type: mongoose.Schema.ObjectId, ref: 'User'},
+  // user: { type: mongoose.Schema.ObjectId, ref: 'User'},
   title: { type: String, minlength: 2, required: true},
   image: { type: String, pattern: /^https?:\/\/.+/ },
   date: { type: String},

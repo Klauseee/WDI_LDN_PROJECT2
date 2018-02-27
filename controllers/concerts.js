@@ -1,6 +1,5 @@
 const Concert = require('../models/concert');
 
-
 function indexRoute(req, res) {
   Concert.find()
     .then(concerts => res.render('concerts/index', { concerts }));
@@ -67,6 +66,22 @@ function commentsDeleteRoute(req, res, next) {
     .catch(next);
 }
 
+function moderate(req, res, next) {
+  if(!req.currentUser.isAdmin){
+    req.flash('danger', 'You do not have permisision to moderate');
+    return res.redirect(`/concerts/${req.params.id}`);
+  }
+
+  Concert.findById(req.params.id)
+    .then(concert => {
+      const comment = concert.comments.id(req.params.commentId);
+      comment.isModerated = true;
+      return concert.save();
+    })
+    .then(concert => res.redirect(`/concerts/${concert._id}`))
+    .catch(next);
+}
+
 
 module.exports = {
   index: indexRoute,
@@ -77,5 +92,6 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   commentsCreate: commentsCreateRoute,
-  commentsDelete: commentsDeleteRoute
+  commentsDelete: commentsDeleteRoute,
+  commentsModerate: moderate
 };

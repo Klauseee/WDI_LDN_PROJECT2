@@ -24,6 +24,7 @@ router.get('/logout', sessions.delete);
 
 router.post('/concerts/:id/comments', secureRoute, concerts.commentsCreate);
 router.delete('/concerts/:id/comments/:commentId', secureRoute, concerts.commentsDelete);
+router.patch('/concerts/:id/comments/:commentId/moderate', secureRoute, concerts.commentsModerate);
 
 router.all('/*', (req, res) => res.render('pages/404'));
 

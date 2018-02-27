@@ -15,5 +15,4 @@ mongoose.connect('mongodb://localhost/bach-database', (err, db) => {
     .then(users => console.log(users))
     .catch(console.log(err))
     .finally(() => mongoose.connection.close());
-
 });

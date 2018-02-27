@@ -27,34 +27,46 @@
           <hr />
 
           <ul class="comments">
-          <% concert.comments.forEach(comment => { %>
-            <li>
-            <div class="box">
-            <% if(comment.isOwnedBy(locals.currentUser)) { %>
-              <form class="delete" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
-              <input type="hidden" name="_method" value="DELETE">
-              <button class="delete">x</button>
-              </form>
+            <% concert.comments.forEach(comment => { %>
+              <li>
+              <div class="box">
+              <% if(comment.isOwnedBy(locals.currentUser) || locals.currentUser.isAdmin) { %>
+                <form class="delete" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button class="delete">x</button>
+                </form>
               <% } %>
-              <article class="media">
-              <div class="media-left">
-              <figure class="image is-64x64">
-              <img src="http:fillmurray.com/100/100" alt="Image">
-              </figure>
-              </div>
-              <div class="media-content">
-              <div class="content">
-              <p>
-              <%= comment.content %>
-              </p>
-              <% if(comment.user) { %>
-                <strong><%= comment.user.username %></strong>
-                <% } %>
-                </div>
-                </div>
+
+              <% if(locals.currentUser.isAdmin) { %>
+                <form class="moderate" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>/moderate">
+                  <input type="hidden" name="_method" value="PATCH">
+                  <button class="moderate">moderate</button>
+                </form>
+              <% } %>
+
+              <% if(comment.isModerated) { %>
+                <article class="media">
+                  <div class="media-left">
+                    <figure class="image is-64x64">
+                      <img src="http:fillmurray.com/100/100" alt="Image">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <%= comment.content %>
+                      </p>
+                    <% if(comment.user) { %>
+                      <strong><%= comment.user.username %></strong>
+                    <% } %>
+                    </div>
+                  </div>
                 </article>
-              </div>
-            </li>
+              <% } %>
+
+
+                </div>
+              </li>
             <% }) %>
           </ul>
 
