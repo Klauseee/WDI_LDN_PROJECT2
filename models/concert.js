@@ -19,7 +19,9 @@ const schema = new mongoose.Schema({
   performer2: { type: String, minglength: 2, required: true},
   performer3: { type: String, minglength: 2},
   description: {type: String, maxlength: 560},
-  comments: [ commentSchema ]
+  comments: [ commentSchema ],
+  category: { type: mongoose.Schema.ObjectId, ref: 'Category', required: true }
+  // category: { type: mongoose.Schema.ObjectId, ref: 'Category' }
 });
 
 schema.methods.isOwnedBy = function(user) {

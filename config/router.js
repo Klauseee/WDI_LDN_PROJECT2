@@ -14,6 +14,7 @@ router.get('/concerts/:id', concerts.show);
 router.get('/concerts/:id/edit', secureRoute, concerts.edit);
 router.put('/concerts/:id', secureRoute, concerts.update);
 router.delete('/concerts/:id', secureRoute, concerts.delete);
+// router.get('/concerts/filter', concerts.filter);
 
 router.get('/register', registrations.new);
 router.post('/register', registrations.create);

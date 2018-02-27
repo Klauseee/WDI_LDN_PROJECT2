@@ -6,6 +6,7 @@
     </div>
     <div class="column is-two-thirds-desktop">
       <h2 class="title"><%= concert.title %></h2>
+      <h2 class="subtitle"><%= concert.category.name %></h2>
       <h3 class="subtitle"><%= concert.date %></h3>
       <ul>
         <li><%= concert.performer1 %></li>
@@ -15,7 +16,7 @@
       <p><%= concert.description %></p>
 
       <% if(locals.isAuthenticated) { %>
-        <% if(concert.isOwnedBy(locals.currentUser)) { %>
+
           <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
 
           <form method="POST" action="/concerts/<%= concert._id %>">
@@ -23,7 +24,7 @@
           <button class="button is-danger">Delete</button>
           </form>
 
-          <% } %>
+
           <hr />
 
           <ul class="comments">

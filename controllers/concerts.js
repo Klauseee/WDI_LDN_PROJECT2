@@ -1,12 +1,30 @@
 const Concert = require('../models/concert');
+const Category = require('../models/category');
+const Promise = require('bluebird');
+
+
 
 function indexRoute(req, res) {
-  Concert.find()
-    .then(concerts => res.render('concerts/index', { concerts }));
+  Promise.props({
+    allConcerts: Concert.find().exec(),
+    concerts: Concert.find(req.query).exec()
+  })
+    .then(data => {
+      const allPerformers = data.allConcerts.map(concert => concert.performer1);
+      const uniquePerformers = Array.from(new Set(allPerformers)).sort();
+
+      res.render('concerts/index', {
+        concerts: data.concerts,
+        performers: uniquePerformers,
+        selectedPerformer: req.query.performer1
+      });
+    });
 }
 
+
 function newRoute(req, res) {
-  res.render('concerts/new');
+  Category.find()
+    .then(categories => res.render('concerts/new', { categories }));
 }
 
 function createRoute(req, res, next) {
@@ -19,6 +37,7 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Concert.findById(req.params.id)
     .populate('comments.user')
+    .populate('category')
     .then(concert => {
       if(!concert) return res.render('pages/404');
       res.render('concerts/show', { concert });
@@ -27,8 +46,12 @@ function showRoute(req, res, next) {
 }
 
 function editRoute(req, res) {
-  Concert.findById(req.params.id)
-    .then(concert => res.render('concerts/edit', { concert }));
+  // get both cheese and categories in parallel
+  Promise.props({
+    concert: Concert.findById(req.params.id),
+    categories: Category.find()
+  })
+    .then(data => res.render('concerts/edit', data)); // inject the data into the view
 }
 
 function updateRoute(req, res) {
@@ -82,6 +105,13 @@ function moderate(req, res, next) {
     .catch(next);
 }
 
+// function filterRoute(req, res) {
+//   const selected = req.body.category;
+//   Concert.find()
+//     .populate('category')
+//     .then(concerts => res.render('concerts/index', {concerts, selected }));
+// }
+
 
 module.exports = {
   index: indexRoute,
@@ -93,5 +123,6 @@ module.exports = {
   delete: deleteRoute,
   commentsCreate: commentsCreateRoute,
   commentsDelete: commentsDeleteRoute,
-  commentsModerate: moderate
+  commentsModerate: moderate,
+  // filter: filterRoute
 };
