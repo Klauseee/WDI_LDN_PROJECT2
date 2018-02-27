@@ -4,23 +4,28 @@ const bcrypt = require('bcrypt');
 const schema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  isAdmin: { type: Boolean, default: false }
 });
 
 // set up the passwordConfirmation virtual
+
 schema
   .virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {
+
     // store the password on the user model temporarily so we can access it in our pre-validate hook
     // `this` refers to the user object
     this._passwordConfirmation = passwordConfirmation;
   });
+
 
 // set up a pre-validate hook
 schema.pre('validate', function checkPassword(next) {
   // check if the password has been modified and if so whether the password and the passwordConfirmation match
   // if not invalidate the passwordConfirmation, so that the validations fail
   if(this.isModified('password') && this._passwordConfirmation !== this.password) this.invalidate('passwordConfirmation', 'does not match');
+
 
   // otherwise continue to the next step (validation)
   next();

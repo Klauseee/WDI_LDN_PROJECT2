@@ -4,7 +4,7 @@
 
 ***
 
-You should create a blogging platform (think [Medium] (https://medium.com/)) that meets the following minimum criteria: 
+You should create a blogging platform (think [Medium] (https://medium.com/)) that meets the following minimum criteria:
 
 ## MVP
 
@@ -30,7 +30,7 @@ Your app must:
 * **The app should include authentication** - with encrypted passwords & an authorization flow.
 * **Have complete RESTful routes** for at least one of your resources with all CRUD actions.
 * **Include wireframes** - that you designed before building the app.
-* Have **semantically clean HTML** - you make sure you write HTML that makes structural sense rather than thinking about how it might look, which is the job of CSS.
+* Have **semantically clean HTML** - you make sure you write HTML that makes structural sense rather than thinking about how it might look, which is the job of CSS. Why say this and then make us use BULMA???!
 * **Be deployed online** and accessible to the public.
 
 ## Tips

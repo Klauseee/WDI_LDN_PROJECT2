@@ -11,6 +11,7 @@ function newRoute(req, res) {
 }
 
 function createRoute(req, res, next) {
+  req.body.user = req.currentUser;
   Concert.create(req.body)
     .then(() => res.redirect('/concerts'))
     .catch(next);

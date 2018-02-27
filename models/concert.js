@@ -10,6 +10,7 @@ commentSchema.methods.isOwnedBy = function(user) {
 };
 
 const schema = new mongoose.Schema({
+  user: { type: mongoose.Schema.ObjectId, ref: 'User'},
   title: { type: String, minlength: 2, required: true},
   image: { type: String, pattern: /^https?:\/\/.+/ },
   date: { type: String},
@@ -19,5 +20,9 @@ const schema = new mongoose.Schema({
   description: {type: String, maxlength: 560},
   comments: [ commentSchema ]
 });
+
+schema.methods.isOwnedBy = function(user) {
+  return this.user && user._id.equals(this.user_id);
+};
 
 module.exports = mongoose.model('Concert', schema);

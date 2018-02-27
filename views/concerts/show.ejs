@@ -1,62 +1,68 @@
 
 <div class="container">
-  <img src="<%= concert.image %>" alt="<%= concert.name %>">
-  <h2 class="title"><%= concert.title %></h2>
-  <h3 class="subtitle"><%= concert.date %></h3>
-  <ul>
-    <li><%= concert.performer1 %></li>
-    <li><%= concert.performer2 %></li>
-    <li><%= concert.performer3 %></li>
-  </ul>
-  <p><%= concert.description %></p>
+  <div class="columns">
+    <div class="column is-one-third-desktop">
+      <img src="<%= concert.image %>" alt="<%= concert.name %>">
+    </div>
+    <div class="column is-two-thirds-desktop">
+      <h2 class="title"><%= concert.title %></h2>
+      <h3 class="subtitle"><%= concert.date %></h3>
+      <ul>
+        <li><%= concert.performer1 %></li>
+        <li><%= concert.performer2 %></li>
+        <li><%= concert.performer3 %></li>
+      </ul>
+      <p><%= concert.description %></p>
 
-
-
-  <% if(locals.isAuthenticated) { %>
+      <% if(locals.isAuthenticated) { %>
+        <% if(concert.isOwnedBy(locals.currentUser)) { %>
           <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
 
           <form method="POST" action="/concerts/<%= concert._id %>">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="button is-danger">Delete</button>
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="button is-danger">Delete</button>
           </form>
 
+          <% } %>
           <hr />
 
           <ul class="comments">
-            <% concert.comments.forEach(comment => { %>
-              <li>
-              <div class="box">
-              <% if(comment.isOwnedBy(locals.currentUser)) { %>
-                <form class="delete" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button class="delete">x</button>
-                </form>
+          <% concert.comments.forEach(comment => { %>
+            <li>
+            <div class="box">
+            <% if(comment.isOwnedBy(locals.currentUser)) { %>
+              <form class="delete" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
+              <input type="hidden" name="_method" value="DELETE">
+              <button class="delete">x</button>
+              </form>
+              <% } %>
+              <article class="media">
+              <div class="media-left">
+              <figure class="image is-64x64">
+              <img src="http:fillmurray.com/100/100" alt="Image">
+              </figure>
+              </div>
+              <div class="media-content">
+              <div class="content">
+              <p>
+              <%= comment.content %>
+              </p>
+              <% if(comment.user) { %>
+                <strong><%= comment.user.username %></strong>
                 <% } %>
-                <article class="media">
-                  <div class="media-left">
-                    <figure class="image is-64x64">
-                      <img src="http:fillmurray.com/100/100" alt="Image">
-                    </figure>
-                  </div>
-                  <div class="media-content">
-                    <div class="content">
-                      <p>
-                        <%= comment.content %>
-                      </p>
-                      <% if(comment.user) { %>
-                        <strong><%= comment.user.username %></strong>
-                      <% } %>
-                    </div>
-                  </div>
-                </article>
                 </div>
-              </li>
+                </div>
+                </article>
+              </div>
+            </li>
             <% }) %>
           </ul>
 
           <form method="POST" action="/concerts/<%= concert._id %>/comments">
-          <textarea class="textarea" name="content"></textarea>
-          <button class="button is-primary">Submit</button>
+            <textarea class="textarea" name="content"></textarea>
+            <button class="button is-primary">Submit</button>
           </form>
-        <% } %>
+          <% } %>
+    </div>
+  </div>
 </div>
