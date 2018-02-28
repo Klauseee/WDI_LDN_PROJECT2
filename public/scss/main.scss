@@ -1,0 +1,36 @@
+@import "components/header.scss";
+@import "components/home.scss";
+@import "components/concerts.scss";
+@import "components/concerts-show.scss";
+@import "components/about.scss";
+
+
+
+* {
+  box-sizing: border-box;
+  font-family: 'Bellefair', serif;
+  color: #202020;
+}
+
+body {
+
+}
+
+body::after{
+  content: "";
+  background-image: url(https://wlcoller.co.uk/wp-content/uploads/2015/02/Natural-Parchmnet-Card-1-600x856.jpg);
+  background-repeat: repeat;
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+#map {
+  width: 600px;
+  height: 400px;
+  background-color: gray;
+}

@@ -1,9 +1,107 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .header h1.title {
+    font-size: 72px;
+    font-weight: 1200;
+    flex-basis: 100%;
+    text-align: center; }
+  .header .navbar {
+    background-color: rgba(255, 255, 255, 0);
+    height: 75px; }
+    .header .navbar .navbar-menu .navbar-brand .navbar-item:hover {
+      background-color: rgba(255, 255, 255, 0); }
+    .header .navbar .navbar-menu .navbar-start .navbar-item {
+      box-sizing: content-box;
+      font-size: 28px;
+      transition: font-size .3s;
+      margin: 8px auto; }
+      .header .navbar .navbar-menu .navbar-start .navbar-item:hover {
+        background-color: rgba(255, 255, 255, 0);
+        color: #4a4a4a;
+        font-size: 32px; }
+    .header .navbar .navbar-menu .navbar-end .navbar-item {
+      box-sizing: content-box;
+      font-size: 28px;
+      transition: font-size .3s;
+      margin: 8px auto; }
+      .header .navbar .navbar-menu .navbar-end .navbar-item:hover {
+        background-color: rgba(255, 255, 255, 0);
+        color: #4a4a4a;
+        font-size: 32px; }
+
+.hero .hero-body {
+  padding: 0; }
+
+.carousel {
+  box-shadow: 3px; }
+  .carousel img {
+    max-height: 700px; }
+
+.filter {
+  display: flex; }
+  .filter .styled-select {
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 240px;
+    background-color: #ddd; }
+    .filter .styled-select select {
+      background: transparent;
+      border: none;
+      font-size: 14px;
+      height: 29px;
+      padding: 5px;
+      /* If you add too much padding here, the options won't show in IE */
+      width: 268px; }
+
+a {
+  color: black; }
+  a div {
+    margin: 20px auto;
+    margin-bottom: 5px; }
+    a div div img {
+      box-shadow: 0 2px 4px 0; }
+    a div div h2 {
+      text-align: center; }
+
+.container.show {
+  display: flex;
+  flex-wrap: wrap; }
+  .container.show div {
+    flex-basis: 100%;
+    text-align: center; }
+    .container.show div img {
+      width: 100%; }
+    .container.show div ul {
+      padding: 5px; }
+      .container.show div ul li {
+        font-size: 18px; }
+  .container.show .media-left {
+    width: auto;
+    flex-basis: auto; }
+
 * {
   box-sizing: border-box;
   font-family: 'Bellefair', serif;
-}
+  color: #202020; }
 
-.hero {
-  background-image: url(https://www.planet-wissen.de/kultur/musik/johann_sebastian_bach/introbachportraitgjpg100~_v-gseapremiumxl.jpg);
-  background-size: cover;
-}
+body::after {
+  content: "";
+  background-image: url(https://wlcoller.co.uk/wp-content/uploads/2015/02/Natural-Parchmnet-Card-1-600x856.jpg);
+  background-repeat: repeat;
+  opacity: 0.25;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; }
+
+#map {
+  width: 600px;
+  height: 400px;
+  background-color: gray; }
+
+/*# sourceMappingURL=style.css.map */

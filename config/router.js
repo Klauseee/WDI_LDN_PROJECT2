@@ -6,6 +6,9 @@ const secureRoute = require('../lib/secureRoute');
 
 
 router.get('/', (req, res) => res.render('pages/home'));
+router.get('/about', (req, res) => res.render('pages/about'));
+router.get('/contact', (req, res) => res.render('pages/contact'));
+router.get('/news', (req, res) => res.render('pages/news'));
 
 router.get('/concerts', concerts.index);
 router.get('/concerts/new', secureRoute, concerts.new);
@@ -14,7 +17,6 @@ router.get('/concerts/:id', concerts.show);
 router.get('/concerts/:id/edit', secureRoute, concerts.edit);
 router.put('/concerts/:id', secureRoute, concerts.update);
 router.delete('/concerts/:id', secureRoute, concerts.delete);
-// router.get('/concerts/filter', concerts.filter);
 
 router.get('/register', registrations.new);
 router.post('/register', registrations.create);

@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  h1.title {
+    font-size: 72px;
+    font-weight: 1200;
+    flex-basis: 100%;
+    text-align: center;
+  }
+  .navbar {
+    background-color: rgba(255, 255, 255, 0);
+    height: 75px;
+    .navbar-menu {
+      .navbar-brand {
+        .navbar-item:hover {
+          background-color: rgba(255, 255, 255, 0);
+        }
+      }
+      .navbar-start{
+        .navbar-item {
+          box-sizing: content-box;
+          font-size: 28px;
+          transition: font-size .3s;
+          // transition: padding .5s;
+          margin: 8px auto;
+          &:hover{
+            background-color: rgba(255, 255, 255, 0);
+            color: #4a4a4a;
+            font-size: 32px;
+            // padding: 6px 14px;
+          }
+        }
+      }
+      .navbar-end{
+        .navbar-item {
+          box-sizing: content-box;
+          font-size: 28px;
+          transition: font-size .3s;
+          // transition: padding .5s;
+          margin: 8px auto;
+          &:hover{
+            background-color: rgba(255, 255, 255, 0);
+            color: #4a4a4a;
+            font-size: 32px;
+            // padding: 6px 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.hero {
+  .hero-body {
+    padding:0;
+  }
+}

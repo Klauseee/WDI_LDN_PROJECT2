@@ -1,36 +1,29 @@
-<main class="container">
-
-  <form>
-      <select name="performer1">
-        <% performers.forEach(performer => { %>
-          <option<% if(performer === selectedPerformer) {%> selected <% } %>><%= performer %></option>
+<form class="filter">
+  <div class="styled-select">
+    <select name="performer1">
+      <option value="All">All</option>
+      <% performers.forEach(performer => { %>
+        <option<% if(performer === selectedPerformer) { %> selected <% } %>><%= performer %></option>
         <% }) %>
       </select>
-      <button>Update</button>
-  </form>
+  </div>
+  <button>Update</button>
+</form>
 
 
-
-
-    <% concerts.forEach(concert => { %>
-      <a href="/concerts/<%= concert._id %>"
-        <div class="columns is-multiline">
-          <div class="column is-full">
-            <h2 class="title"><%= concert.title %></h2>
-          </div>
-          <div class="column is-one-third-desktop">
-            <img src="<%= concert.image %>" alt="<%= concert.name %>">
-          </div>
-          <div class="column">
-            <h3 class="subtitle"><%= concert.date %></h3>
-            <ul>
-              <li><%= concert.performer1 %></li>
-              <li><%= concert.performer2 %></li>
-              <li><%= concert.performer3 %></li>
-            </ul>
-            <p><%= concert.description %></p>
-          </div>
-        </div>
-      </a>
-    <% }) %>
-</main>
+<% concerts.forEach(concert => { %>
+  <a class ="concert" href="/concerts/<%= concert._id %>">
+    <div class="columns is-multiline">
+      <div class="column is-full">
+        <h2 class="title"><%= concert.title %></h2>
+      </div>
+      <div class="column is-one-third-desktop is-half-tablet is-full-mobile">
+        <img src="<%= concert.image %>" alt="<%= concert.name %>">
+      </div>
+      <div class="column">
+        <h3 class="subtitle"><%= concert.date %></h3>
+        <p><%= concert.description %></p>
+      </div>
+    </div>
+  </a>
+<% }) %>

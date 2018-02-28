@@ -1,0 +1,27 @@
+.container.show {
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    flex-basis: 100%;
+    text-align: center;
+    img {
+      width: 100%;
+    }
+    ul {
+      padding: 5px;
+      li {
+        font-size: 18px;
+      }
+    }
+    p {
+      // width:
+    }
+  }
+  .media-left {
+    width: auto;
+    flex-basis: auto;
+  }
+  .media-content {
+
+  }
+}

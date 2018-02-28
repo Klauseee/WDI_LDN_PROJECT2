@@ -5,6 +5,8 @@ const Promise = require('bluebird');
 
 
 function indexRoute(req, res) {
+  if(req.query.performer1 === 'All') req.query = {};
+
   Promise.props({
     allConcerts: Concert.find().exec(),
     concerts: Concert.find(req.query).exec()
@@ -18,6 +20,7 @@ function indexRoute(req, res) {
         performers: uniquePerformers,
         selectedPerformer: req.query.performer1
       });
+      console.log(req.query);
     });
 }
 
@@ -37,7 +40,6 @@ function createRoute(req, res, next) {
 function showRoute(req, res, next) {
   Concert.findById(req.params.id)
     .populate('comments.user')
-    .populate('category')
     .then(concert => {
       if(!concert) return res.render('pages/404');
       res.render('concerts/show', { concert });
@@ -91,7 +93,7 @@ function commentsDeleteRoute(req, res, next) {
 
 function moderate(req, res, next) {
   if(!req.currentUser.isAdmin){
-    req.flash('danger', 'You do not have permisision to moderate');
+    req.flash('danger', 'You do not have permission to moderate');
     return res.redirect(`/concerts/${req.params.id}`);
   }
 
@@ -105,13 +107,6 @@ function moderate(req, res, next) {
     .catch(next);
 }
 
-// function filterRoute(req, res) {
-//   const selected = req.body.category;
-//   Concert.find()
-//     .populate('category')
-//     .then(concerts => res.render('concerts/index', {concerts, selected }));
-// }
-
 
 module.exports = {
   index: indexRoute,
@@ -123,6 +118,5 @@ module.exports = {
   delete: deleteRoute,
   commentsCreate: commentsCreateRoute,
   commentsDelete: commentsDeleteRoute,
-  commentsModerate: moderate,
-  // filter: filterRoute
+  commentsModerate: moderate
 };
