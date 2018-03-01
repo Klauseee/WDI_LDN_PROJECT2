@@ -16,9 +16,11 @@ const router = require('./config/router');
 
 const app = express();
 
-const PORT = 8000;
+// heroku's port number or our local port number
+const PORT = process.env.PORT || 8000;
 
-mongoose.connect('mongodb://localhost/bach-database');
+// heroku's cloud database or our local database
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bach-database');
 
 app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
