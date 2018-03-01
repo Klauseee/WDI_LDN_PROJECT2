@@ -7,7 +7,7 @@ const userData = require('./data/users');
 const Category = require('../models/category');
 const categoryData = require('./data/categories');
 
-mongoose.connect('mongodb://localhost/bach-database', (err, db) => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/bach-database', (err, db) => {
   db.dropDatabase();
 
   Category.create(categoryData)
