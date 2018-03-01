@@ -20,14 +20,12 @@ function indexRoute(req, res) {
         performers: uniquePerformers,
         selectedPerformer: req.query.performer1
       });
-      console.log(req.query);
     });
 }
 
 
 function newRoute(req, res) {
-  Category.find()
-    .then(categories => res.render('concerts/new', { categories }));
+  res.render('concerts/new');
 }
 
 function createRoute(req, res, next) {

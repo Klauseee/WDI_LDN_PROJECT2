@@ -34,24 +34,25 @@
               <li>
               <% if(comment.isModerated || locals.currentUser.isAdmin || comment.isOwnedBy(locals.currentUser)) { %>
               <div class="box">
-              <% if(comment.isOwnedBy(locals.currentUser) || locals.currentUser.isAdmin) { %>
-                <form class="delete" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <button class="delete">x</button>
-                </form>
-              <% } %>
+                <div class="comment-buttons"
+                  <% if(comment.isOwnedBy(locals.currentUser) || locals.currentUser.isAdmin) { %>
+                    <form method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button>delete</button>
+                    </form>
+                  <% } %>
 
-              <% if(locals.currentUser.isAdmin && !comment.isModerated) { %>
-                <form class="moderate" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>/moderate">
-                  <input type="hidden" name="_method" value="PATCH">
-                  <button class="moderate">moderate</button>
-                </form>
-              <% } %>
-
+                  <% if(locals.currentUser.isAdmin && !comment.isModerated) { %>
+                    <form class="moderate" method="POST" action="/concerts/<%= concert._id %>/comments/<%= comment._id %>/moderate">
+                      <input type="hidden" name="_method" value="PATCH">
+                      <button class="moderate">moderate</button>
+                    </form>
+                  <% } %>
+                </div>
               <% if(comment.isModerated || locals.currentUser.isAdmin || comment.isOwnedBy(locals.currentUser)) { %>
                 <article class="media">
                   <div class="media-left">
-                    <figure class="image is-128x128">
+                    <figure class="image is-64x64">
                       <img src="<%= comment.user.image %>" alt="User Image">
                     </figure>
                   </div>

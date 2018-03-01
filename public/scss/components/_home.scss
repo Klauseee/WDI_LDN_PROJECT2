@@ -1,6 +1,12 @@
-.carousel {
-  box-shadow: 3px;
-  img{
-    max-height: 700px;
+section.hero.homepage {
+  background-image: url(http://www.skintlondon.com/wp-content/uploads/2017/12/bach.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  .title {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    top: 0;
+    font-size: 120px;
   }
 }

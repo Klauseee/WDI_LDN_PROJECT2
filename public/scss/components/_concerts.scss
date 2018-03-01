@@ -5,7 +5,9 @@
      height: 29px;
      overflow: hidden;
      width: 240px;
-     background-color: #ddd;
+     // background-color: #ddd;
+     border: 1px solid #d0d0d0;
+     border-radius: 2px;
      select {
        background: transparent;
        border: none;
@@ -15,13 +17,21 @@
        width: 268px;
      }
   }
+  button {
+    background-color: #fbf9f2;
+    border-radius: 2px;
+  }
 }
 
 a {
     color: black;
-  div {
+  .concert-area {
     margin: 20px auto;
     margin-bottom: 5px;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
+    height: 300px;
+    overflow: hidden;
     div {
       img {
         box-shadow: 0 2px 4px 0;

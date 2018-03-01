@@ -2,12 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
-  .header h1.title {
-    font-size: 156px;
-    font-weight: 1200;
-    flex-basis: 100%;
-    text-align: center;
-    margin-top: 35px; }
   .header .navbar {
     background-color: rgba(255, 255, 255, 0);
     height: 75px; }
@@ -37,10 +31,16 @@
 .hero .hero-body {
   padding: 0; }
 
-.carousel {
-  box-shadow: 3px; }
-  .carousel img {
-    max-height: 700px; }
+section.hero.homepage {
+  background-image: url(http://www.skintlondon.com/wp-content/uploads/2017/12/bach.jpg);
+  background-size: contain;
+  background-repeat: no-repeat; }
+  section.hero.homepage .title {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    top: 0;
+    font-size: 120px; }
 
 .filter {
   display: flex; }
@@ -49,7 +49,8 @@
     height: 29px;
     overflow: hidden;
     width: 240px;
-    background-color: #ddd; }
+    border: 1px solid #d0d0d0;
+    border-radius: 2px; }
     .filter .styled-select select {
       background: transparent;
       border: none;
@@ -58,15 +59,22 @@
       padding: 5px;
       /* If you add too much padding here, the options won't show in IE */
       width: 268px; }
+  .filter button {
+    background-color: #fbf9f2;
+    border-radius: 2px; }
 
 a {
   color: black; }
-  a div {
+  a .concert-area {
     margin: 20px auto;
-    margin-bottom: 5px; }
-    a div div img {
+    margin-bottom: 5px;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
+    height: 300px;
+    overflow: hidden; }
+    a .concert-area div img {
       box-shadow: 0 2px 4px 0; }
-    a div div h2 {
+    a .concert-area div h2 {
       text-align: center; }
 
 .container.show {
@@ -124,6 +132,13 @@ body::after {
   right: 0;
   position: absolute;
   z-index: -1; }
+
+h1.title {
+  font-size: 156px;
+  font-weight: 1200;
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 35px; }
 
 #map {
   width: 600px;

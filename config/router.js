@@ -5,7 +5,7 @@ const sessions = require('../controllers/sessions');
 const secureRoute = require('../lib/secureRoute');
 
 
-router.get('/', (req, res) => res.render('pages/home'));
+router.get('/', (req, res) => res.render('pages/home', { isHomepage: true }));
 router.get('/about', (req, res) => res.render('pages/about'));
 router.get('/contact', (req, res) => res.render('pages/contact'));
 router.get('/news', (req, res) => res.render('pages/news'));

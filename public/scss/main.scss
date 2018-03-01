@@ -5,16 +5,12 @@
 @import "components/about.scss";
 
 
-
 * {
   box-sizing: border-box;
   font-family: 'Bellefair', serif;
   color: #202020;
 }
 
-body {
-
-}
 
 body::after{
   content: "";
@@ -28,6 +24,13 @@ body::after{
   right: 0;
   position: absolute;
   z-index: -1;
+}
+h1.title {
+  font-size: 156px;
+  font-weight: 1200;
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 35px;
 }
 
 #map {

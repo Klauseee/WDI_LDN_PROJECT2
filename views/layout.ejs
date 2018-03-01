@@ -19,17 +19,28 @@
   </head>
     <body>
         <div class="header">
-          <h1 class = "title">Bach 'n' Eggs</h1>
+          <% if(!locals.isHomepage) { %>
+            <h1 id="mainTitle" class="title">Bach 'n' Eggs</h1>
+          <% } %>
           <%- include ./partials/_navbar %>
         </div>
-        <div class="container">
 
+        <% if(!locals.isHomepage) { %>
+          <div class="container">
+
+            <% for (const type in messages) { %>
+              <div class="notification is-<%= type %>"><%= messages[type] %></div>
+            <% } %>
+
+            <%- body %>
+
+          </div>
+        <% } else { %>
           <% for (const type in messages) { %>
             <div class="notification is-<%= type %>"><%= messages[type] %></div>
           <% } %>
 
           <%- body %>
-
-        </div>
+        <% } %>
     </body>
 </html>

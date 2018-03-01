@@ -16,13 +16,16 @@ function initMap() {
 
 $(() => {
   console.log('running');
-  $('.carousel').slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    adaptiveHeight: true
-  });
+
+  // $('.carousel').slick({
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 300,
+  //   slidesToShow: 1,
+  //   adaptiveHeight: true
+  // });
+
+
   $('form').validate();
   if($('#map'))initMap();
 

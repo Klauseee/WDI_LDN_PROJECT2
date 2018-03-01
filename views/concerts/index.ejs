@@ -1,19 +1,22 @@
-<form class="filter">
-  <div class="styled-select">
-    <select name="performer1">
-      <option value="All">All</option>
-      <% performers.forEach(performer => { %>
-        <option<% if(performer === selectedPerformer) { %> selected <% } %>><%= performer %></option>
-        <% }) %>
-      </select>
-  </div>
-  <button>Update</button>
-</form>
+<div class="index-top">
+  <form class="filter">
+    <div class="styled-select">
+      <select name="performer1">
+        <option value="All">All</option>
+        <% performers.forEach(performer => { %>
+          <option<% if(performer === selectedPerformer) { %> selected <% } %>><%= performer %></option>
+          <% }) %>
+        </select>
+      </div>
+      <button>Update</button>
+    </form>
+  
+</div>
 
 
 <% concerts.forEach(concert => { %>
   <a class ="concert" href="/concerts/<%= concert._id %>">
-    <div class="columns is-multiline">
+    <div class="columns is-multiline concert-area">
       <div class="column is-full">
         <h2 class="title"><%= concert.title %></h2>
       </div>
