@@ -1,9 +1,20 @@
-
 <div class="container show">
     <div class="">
       <img src="<%= concert.image %>" alt="<%= concert.name %>">
     </div>
-    <div class="">
+
+    <% if(locals.isAuthenticated) { %>
+      <% if(locals.currentUser.isAdmin) { %>
+        <div class="admin-buttons">
+        <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
+        <form method="POST" action="/concerts/<%= concert._id %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="button is-danger">Delete</button>
+        </form>
+        </div>
+      <% } %>
+    <% } %>
+    <div class="concert">
       <h2 class="title"><%= concert.title %></h2>
       <h3 class="subtitle"><%= concert.date %></h3>
       <ul>
@@ -12,17 +23,10 @@
         <li><%= concert.performer3 %></li>
       </ul>
       <p><%= concert.description %></p>
+    </div>
+
 
       <% if(locals.isAuthenticated) { %>
-        <% if(locals.currentUser.isAdmin) { %>
-          <a href="/concerts/<%= concert._id %>/edit" class="button is-primary">Edit</a>
-
-          <form method="POST" action="/concerts/<%= concert._id %>">
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="button is-danger">Delete</button>
-          </form>
-
-        <% } %>
           <hr />
 
           <ul class="comments">
@@ -47,7 +51,7 @@
               <% if(comment.isModerated || locals.currentUser.isAdmin || comment.isOwnedBy(locals.currentUser)) { %>
                 <article class="media">
                   <div class="media-left">
-                    <figure class="image is-64x64">
+                    <figure class="image is-128x128">
                       <img src="<%= comment.user.image %>" alt="User Image">
                     </figure>
                   </div>
@@ -67,13 +71,13 @@
                 <% } %>
               </li>
             <% }) %>
-          </ul>
-
-          <form method="POST" action="/concerts/<%= concert._id %>/comments">
-            <textarea class="textarea" name="content"></textarea>
-            <button class="button is-primary">Submit</button>
-          </form>
-          <% } %>
-    </div>
+            <li>
+                <form method="POST" action="/concerts/<%= concert._id %>/comments">
+                  <textarea class="textarea" name="content"></textarea>
+                  <button class="button is-primary">Submit</button>
+                </form>
+              <% } %>
+            </li>
+        </ul>
   </div>
 </div>

@@ -1,27 +1,36 @@
 .container.show {
   display: flex;
   flex-wrap: wrap;
-  div {
+  justify-content: center;
+  .admin-buttons {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
+  }
+  .concert {
     flex-basis: 100%;
     text-align: center;
     img {
-      width: 100%;
+      max-height: 700px;
+      width: auto;
     }
-    ul {
-      padding: 5px;
-      li {
-        font-size: 18px;
+  }
+  .comments {
+    // display: flex;
+    padding: 5px;
+    width: 100%;
+    li {
+      font-size: 18px;
+      .box {
+        display: flex;
       }
     }
-    p {
-      // width:
+    .media-left {
+      width: auto;
+      flex-basis: auto;
     }
-  }
-  .media-left {
-    width: auto;
-    flex-basis: auto;
-  }
-  .media-content {
+    .media-content {
 
+    }
   }
 }

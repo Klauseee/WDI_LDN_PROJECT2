@@ -19,6 +19,7 @@ body {
 body::after{
   content: "";
   background-image: url(https://wlcoller.co.uk/wp-content/uploads/2015/02/Natural-Parchmnet-Card-1-600x856.jpg);
+  background-size: cover;
   background-repeat: repeat;
   opacity: 0.25;
   top: 0;

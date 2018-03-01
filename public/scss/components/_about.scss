@@ -1,0 +1,17 @@
+.container {
+  font-size: 22px;
+  text-align: center;
+  p {
+    padding: 8px 0;
+  }
+}
+
+.address-map {
+  margin-top: 15px;
+  .address-holder {
+    text-align: right;
+    .address {
+      font-weight: 900;
+    }
+  }
+}

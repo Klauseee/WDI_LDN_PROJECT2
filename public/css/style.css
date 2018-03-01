@@ -3,10 +3,11 @@
   flex-wrap: wrap;
   justify-content: center; }
   .header h1.title {
-    font-size: 72px;
+    font-size: 156px;
     font-weight: 1200;
     flex-basis: 100%;
-    text-align: center; }
+    text-align: center;
+    margin-top: 35px; }
   .header .navbar {
     background-color: rgba(255, 255, 255, 0);
     height: 75px; }
@@ -15,6 +16,7 @@
     .header .navbar .navbar-menu .navbar-start .navbar-item {
       box-sizing: content-box;
       font-size: 28px;
+      font-weight: 900;
       transition: font-size .3s;
       margin: 8px auto; }
       .header .navbar .navbar-menu .navbar-start .navbar-item:hover {
@@ -24,6 +26,7 @@
     .header .navbar .navbar-menu .navbar-end .navbar-item {
       box-sizing: content-box;
       font-size: 28px;
+      font-weight: 900;
       transition: font-size .3s;
       margin: 8px auto; }
       .header .navbar .navbar-menu .navbar-end .navbar-item:hover {
@@ -68,19 +71,41 @@ a {
 
 .container.show {
   display: flex;
-  flex-wrap: wrap; }
-  .container.show div {
+  flex-wrap: wrap;
+  justify-content: center; }
+  .container.show .admin-buttons {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%; }
+  .container.show .concert {
     flex-basis: 100%;
     text-align: center; }
-    .container.show div img {
-      width: 100%; }
-    .container.show div ul {
-      padding: 5px; }
-      .container.show div ul li {
-        font-size: 18px; }
-  .container.show .media-left {
-    width: auto;
-    flex-basis: auto; }
+    .container.show .concert img {
+      max-height: 700px;
+      width: auto; }
+  .container.show .comments {
+    padding: 5px;
+    width: 100%; }
+    .container.show .comments li {
+      font-size: 18px; }
+      .container.show .comments li .box {
+        display: flex; }
+    .container.show .comments .media-left {
+      width: auto;
+      flex-basis: auto; }
+
+.container {
+  font-size: 22px;
+  text-align: center; }
+  .container p {
+    padding: 8px 0; }
+
+.address-map {
+  margin-top: 15px; }
+  .address-map .address-holder {
+    text-align: right; }
+    .address-map .address-holder .address {
+      font-weight: 900; }
 
 * {
   box-sizing: border-box;
@@ -90,6 +115,7 @@ a {
 body::after {
   content: "";
   background-image: url(https://wlcoller.co.uk/wp-content/uploads/2015/02/Natural-Parchmnet-Card-1-600x856.jpg);
+  background-size: cover;
   background-repeat: repeat;
   opacity: 0.25;
   top: 0;
